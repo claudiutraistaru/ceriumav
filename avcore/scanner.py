@@ -37,8 +37,11 @@ def positive_alert(filename):
 
 def init_scan(item):
     mal_ext = False;
-    if  item in ext.exts:
-        mal_ext = True
+    for e in ext.exts:
+        if item.endswith(e):
+            mal_ext = True
+        # if item.endswith(e):
+        #     mal_ext = True
     sig = dt.detect(item)
     # print(sig)
     
@@ -48,7 +51,8 @@ def init_scan(item):
         if debug:
             print('[+] \t\tFound Clean alert on signature {}'.format(a))
     if mal_ext:
-        print('[+] \t\tFound Malicious Extension, Maybe a Threat ')
+        print(Fore.RED + Style.BRIGHT +'[+] \t\tFound Dangerous Extension, Maybe a Threat. ')
+        print(Style.RESET_ALL)
 
 
 
